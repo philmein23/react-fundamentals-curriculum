@@ -21,7 +21,7 @@ var styles = {
     listStyle: 'none'
   },
   header: {
-    fontSize: 30,
+    fontSize: 60,
     fontWeight: 100,
     textAlign: 'center'
   },
@@ -44,20 +44,26 @@ function DayContainer(props) {
   )
 }
 
+function ForecastUI(props) {
+  return (
+    <div style={styles.container}>
+      {props.forecast.map(function(list, i) {
+        return <DayContainer key={list.dt} list={list} />
+      })}
+    </div>
+  )
+}
+
 function Forecast(props) {
   return (
     props.isLoading === true
     ? <Loading />
-  : <div>
-      <h1 style={styles.header}>{props.city}</h1>
-      <h2 style={styles.header}>Select a day</h2>
-      <div style={styles.container}>
-        {props.forecast.map(function(list, i) {
-          return <DayContainer key={list.dt} list={list} />
-        })}
-  </div>
-</div>
-)
+    : <div>
+        <h1 style={styles.header}>{props.city}</h1>
+        <h2 style={styles.header}>Select a day</h2>
+        <ForecastUI forecast={props.forecast}/>
+      </div>
+  )
 }
 
 Forecast.propTypes = {
