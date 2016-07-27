@@ -11,12 +11,12 @@ var ForecastContainer = React.createClass({
   },
   componentDidMount: function() {
     helper.getFiveDayForecast(this.props.routeParams.city)
-    .then(function(weather) {
+    .then(function(forecastList) {
       this.setState({
         isLoading: false,
-        forecast: weather.data.list.slice(0, 5)
+        forecast: forecastList.slice(0, 5)
       });
-      console.log(weather.data.list.slice(0, 5));
+      console.log(forecastList.slice(0, 5));
     }.bind(this));
   },
   render: function() {
@@ -24,7 +24,7 @@ var ForecastContainer = React.createClass({
       <Forecast
         isLoading={this.state.isLoading}
         city={this.props.routeParams.city}
-        forecast={this.state.forecast}/>
+        forecast={this.state.forecast} />
     )
   }
 })
