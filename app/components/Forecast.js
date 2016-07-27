@@ -9,7 +9,9 @@ var styles = {
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 20
+    flexWrap: 'wrap',
+    maxWidth: 1200,
+    margin: '70px auto'
   },
   dayContainer: {
     display: 'flex',
