@@ -9,7 +9,7 @@ var styles = {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      background: 'rgba(252, 90, 44, 0.89)',
+      background: 'rgb(16, 121, 150)',
       color: '#fff',
       padding: 5,
     }

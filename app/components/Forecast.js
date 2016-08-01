@@ -36,10 +36,12 @@ var styles = {
 }
 
 function DayContainer(props) {
+  var date = convertUnixDate(props.list.dt);
+  var icon = props.list.weather[0].icon;
   return (
-    <div style={styles.dayContainer}>
-      <img style={styles.weather} src={'/app/images/weather-icons/' + props.list.weather[0].icon + '.svg'}/>
-      <li style={styles.subheader}>{convertUnixDate(props.list.dt)}</li>
+    <div style={styles.dayContainer} onClick={props.handleClick.bind(null, props.list)}>
+      <img style={styles.weather} src={'/app/images/weather-icons/' + icon + '.svg'}/>
+      <li style={styles.subheader}>{date}</li>
     </div>
   )
 }
@@ -48,7 +50,7 @@ function ForecastUI(props) {
   return (
     <div style={styles.container}>
       {props.forecast.map(function(list, i) {
-        return <DayContainer key={list.dt} list={list} />
+        return <DayContainer key={list.dt} list={list} handleClick={props.handleClick}/>
       })}
     </div>
   )
@@ -58,10 +60,10 @@ function Forecast(props) {
   return (
     props.isLoading === true
     ? <Loading />
-    : <div>
+    : <div >
         <h1 style={styles.header}>{props.city}</h1>
         <h2 style={styles.header}>Select a day</h2>
-        <ForecastUI forecast={props.forecast}/>
+        <ForecastUI forecast={props.forecast} handleClick={props.onCurrentCity} />
       </div>
   )
 }
