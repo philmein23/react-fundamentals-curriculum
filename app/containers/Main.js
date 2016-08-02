@@ -1,4 +1,5 @@
 var React = require('react');
+var GetCityContainer = require('./GetCityContainer');
 
 var styles = {
     container: {
@@ -10,7 +11,6 @@ var styles = {
       justifyContent: 'space-between',
       alignItems: 'center',
       background: 'rgb(16, 121, 150)',
-      color: '#fff',
       padding: 5,
     }
 }
@@ -20,7 +20,8 @@ var MainContainer = React.createClass({
         return (
             <div style={styles.container}>
               <div style={styles.header}>
-                <h1 style={{margin: 10, fontWeight: 200}}>Weather App</h1>
+                <h1 style={{margin: 10, fontWeight: 200, color: '#fff'}}>Weather App</h1>
+                <GetCityContainer direction='row' />
               </div>
                 {this.props.children}
             </div>

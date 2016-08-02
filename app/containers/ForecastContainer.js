@@ -14,14 +14,10 @@ var ForecastContainer = React.createClass({
     }
   },
   componentDidMount: function() {
-    helper.getFiveDayForecast(this.props.routeParams.city)
-    .then(function(forecastList) {
-      this.setState({
-        isLoading: false,
-        forecast: forecastList.slice(0, 5)
-      });
-      console.log(forecastList.slice(0, 5));
-    }.bind(this));
+    this.handleForecast(this.props.routeParams.city);
+  },
+  componentWillReceiveProps: function(nextProps) {
+    this.handleForecast(nextProps.routeParams.city)
   },
   handleCurrentCity: function(weather) {
     this.context.router.push({
@@ -30,6 +26,16 @@ var ForecastContainer = React.createClass({
         weather: weather
       }
     })
+  },
+  handleForecast: function(city) {
+    helper.getFiveDayForecast(city)
+    .then(function(forecastList) {
+      this.setState({
+        isLoading: false,
+        forecast: forecastList.slice(0, 5)
+      });
+      console.log(forecastList.slice(0, 5));
+    }.bind(this));
   },
   render: function() {
     return (

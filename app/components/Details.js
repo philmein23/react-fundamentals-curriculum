@@ -1,10 +1,12 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 var convertUnixDate = require('../util/util');
+var temperatureConverter = require('../util/temperature');
 
 var styles = {
     container: {
         display: 'flex',
+        justifyContent: 'center',
         flexDirection: 'column',
         alignItems: 'center'
     },
@@ -30,8 +32,8 @@ function Details(props) {
             <div style={styles.subheader}>{date}</div>
             <img style={styles.icon} src={'/app/images/weather-icons/' + icon + '.svg'} />
             <h1 style={styles.header}>{props.weather.weather[0].description}</h1>
-            <div style={styles.subheader}>Min temp: {props.weather.temp.min}</div>
-            <div style={styles.subheader}>Max temp: {props.weather.temp.max}</div>
+            <div style={styles.subheader}>Min temp: {Math.round(temperatureConverter(props.weather.temp.min))} degrees</div>
+            <div style={styles.subheader}>Max temp: {Math.round(temperatureConverter(props.weather.temp.max))} degrees</div>
             <div style={styles.subheader}>Humidity: {props.weather.humidity}</div>
         </div>
         )

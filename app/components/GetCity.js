@@ -1,20 +1,20 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 
-var styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    maxWidth: '300px'
+function GetStyles(props) {
+  return {
+        display: 'flex',
+        flexDirection: props.direction || 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        maxWidth: '300px'
   }
 }
 
 function GetCity(props) {
   return (
     <form onSubmit={props.onSubmitCity}>
-      <div style={styles.container}>
+      <div style={GetStyles(props)}>
         <input type="text"
           onChange={props.onUpdateCity}
           placeholder="Type in City"
